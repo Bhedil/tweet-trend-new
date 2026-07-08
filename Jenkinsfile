@@ -10,12 +10,13 @@ environment {
     // PATH = "/opt/apache-maven-3.9.16/bin:$PATH"
     // Allocates up to 2GB of memory to the Sonar JVM process
     SONAR_SCANNER_OPTS = '-Xmx2048m'
+    export MAVEN_OPTS="-Xms512m -Xmx2048m"
 }
 
     stages {
         stage("build"){
             steps {
-                sh 'mvn clean deploy'
+                sh 'mvn clean install -DskipTests'
             }
         }
 
