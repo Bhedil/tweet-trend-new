@@ -42,17 +42,18 @@ environment {
             }
         }
 
-        stage("Quality Gate"){
-            steps{
-                script {
-                   timeout(time: 1, unit: 'HOURS') { // Just in case something goes wrong, pipeline will be killed after a timeout
-                        def qg = waitForQualityGate() // Reuse taskId previously collected by withSonarQubeEnv
-                        if (qg.status != 'OK') {
-                            error "Pipeline aborted due to quality gate failure: ${qg.status}"
-                        }
-                    } 
-                }
-            }
-        }
+        //cannot use this stage because of the current capitalism of sonarqube to create a custom quality gates because it locked by paid features.
+        // stage("Quality Gate"){
+        //     steps{
+        //         script {
+        //            timeout(time: 1, unit: 'HOURS') { // Just in case something goes wrong, pipeline will be killed after a timeout
+        //                 def qg = waitForQualityGate() // Reuse taskId previously collected by withSonarQubeEnv
+        //                 if (qg.status != 'OK') {
+        //                     error "Pipeline aborted due to quality gate failure: ${qg.status}"
+        //                 }
+        //             } 
+        //         }
+        //     }
+        // }
     }
 }
