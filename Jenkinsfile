@@ -8,7 +8,7 @@ pipeline {
 // for path environment variables defined
 environment {
     // PATH = "/opt/apache-maven-3.9.16/bin:$PATH"
-    // Allocates up to 2GB of memory to the Sonar JVM process
+    // Allocates up to 2GB of memory to the Sonar JVM and maven server process
     SONAR_SCANNER_OPTS = '-Xmx2048m'
     MAVEN_OPTS="-Xms512m -Xmx2048m"
 }
@@ -16,7 +16,17 @@ environment {
     stages {
         stage("build"){
             steps {
-                sh 'mvn clean deploy'
+                echo "---------------- build started -----------------"
+                sh 'mvn clean deploy -Dmaven.test.skip=true'
+                echo "---------------- build completed -----------------"
+            }
+        }
+
+        stage("test"){
+            steps{
+                echo "---------------- unit test started -----------------"
+                sh "mvn surefire-report:report"
+                echo "---------------- unit test completed -----------------"
             }
         }
 
