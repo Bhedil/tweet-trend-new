@@ -6,9 +6,11 @@ pipeline {
     }
 
 // for path environment variables defined
-// environment {
-//     PATH = "/opt/apache-maven-3.9.16/bin:$PATH"
-// }
+environment {
+    // PATH = "/opt/apache-maven-3.9.16/bin:$PATH"
+    // Allocates up to 2GB of memory to the Sonar JVM process
+    SONAR_SCANNER_OPTS = '-Xmx2048m'
+}
 
     stages {
         stage("build"){
