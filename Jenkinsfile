@@ -20,7 +20,8 @@ environment {
         stage("build"){
             steps {
                 echo "---------------- build started -----------------"
-                sh 'mvn clean deploy -Dmaven.test.skip=true'
+                //to avoid duplicate artifact, choose package instead deploy
+                sh 'mvn clean package -Dmaven.test.skip=true'
                 echo "---------------- build completed -----------------"
             }
         }
@@ -70,7 +71,7 @@ environment {
                           "files": [
                             {
                               "pattern": "jarstaging/(*)",
-                              "target": "libs-release-local/{1}",
+                              "target": "jenkins-bhedil-libs-release-local/{1}",
                               "flat": "false",
                               "props" : "${properties}",
                               "exclusions": [ "*.sha1", "*.md5"]
