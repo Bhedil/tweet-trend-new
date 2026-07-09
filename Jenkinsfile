@@ -6,7 +6,6 @@ pipeline {
     agent {
         node {
             label 'maven'
-            retries 2
         }
     }
 
