@@ -1,6 +1,6 @@
 def registry = 'https://bhedil.jfrog.io'
 def imageName = 'bhedil.jfrog.io/bhedil-docker-local/ttrend'
-def version   = '2.1.2'
+def version   = '2.1.3'
 
 pipeline {
     agent {
