@@ -25,7 +25,8 @@ environment {
             steps {
                 echo "---------------- build started -----------------"
                 //to avoid duplicate artifact, choose package instead deploy
-                sh 'mvn clean package -Dmaven.test.skip=true'
+                //package can handle duplication but cannot handle new version
+                sh 'mvn clean deploy -Dmaven.test.skip=true'
                 echo "---------------- build completed -----------------"
             }
         }
