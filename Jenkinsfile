@@ -115,7 +115,7 @@ environment {
         
         stage("Deploy"){
             steps {
-                sh "./deploy.sh"
+                sh "./kubernetes/deploy.sh"
             }
         }   
 
