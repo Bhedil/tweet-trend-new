@@ -6,6 +6,7 @@ pipeline {
     agent {
         node {
             label 'maven'
+            //add bullshit
             // comment the repetition because already scale up the instance
             //retries 2
         }
