@@ -115,7 +115,10 @@ environment {
         
         stage("Deploy"){
             steps {
-                sh "./kubernetes/deploy.sh"
+                //explicity tell jenkins to live in this dir and perform executable in this dir
+                dir('kubernetes') {
+                    sh "./deploy.sh"
+                }
             }
         }   
 
